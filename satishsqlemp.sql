@@ -86,3 +86,12 @@ WHERE table_schema = ''
 		   describe satish;
 		   \d satish;
 select dept,sal from satish where sal in(select max(sal) from satish) ;
+
+
+
+--Duplicate records
+select num,Count(num) from satish group by num having count(num)>1; 
+--Delete them
+delete from satish 
+where num in
+(select num from satish group by num having count(num)>1);
