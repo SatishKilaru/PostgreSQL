@@ -1,0 +1,16 @@
+--Common table expressions
+With Emp(EName,Num,Salary,dept)
+As(select ename,num,sal,dept from satish),
+Dep(Dno,Avgsal)
+As(select dept,avg(sal) from satish group by dept)
+Select Ename,Num,Salary,Dno,Avgsal from Emp
+Inner Join Dep 
+On Emp.dept=Dep.Dno;
+--
+With Emp(EName,Num,Salary,dept,mgr)
+As(select ename,num,sal,dept,mgr from satish),
+Man(nom,sal)
+AS(Select num,sal from satish)
+Select EName,Num,Salary,dept,mgr,nom,sal from Emp
+Inner Join Man 
+On(Emp.mgr=Man.nom And Emp.salary>Man.sal);
