@@ -1,0 +1,2 @@
+select s.num,s.ename,dep.DepAvgsal from satish s,(select dept,avg(sal) as DepAvgsal from satish group by dept)dep where s.dept=dep.dept;
+select num,ename,sal,Avgsal,Depavgsal from satish,(select avg(sal) from satish) as Avgsal,(select dept,avg(sal) as DepAvgsal from satish group by dept)dep where satish.dept=dep.dept;
