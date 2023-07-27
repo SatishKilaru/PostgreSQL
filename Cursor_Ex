@@ -1,0 +1,15 @@
+--Cursors
+--
+Do $$
+Declare 
+	Simpl Cursor for select ename from satish;
+	r Record;
+Begin
+	Open Simpl;
+	Loop
+		Fetch Simpl into r;
+		Exit when Not Found;
+		Raise Notice 'Ename: %',r.ename;
+	End LOOP;
+	Close Simpl;
+End $$;
