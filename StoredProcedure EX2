@@ -1,0 +1,18 @@
+Create Or Replace Function getdataofJob()
+Returns Table(empname Text)
+Language PLPGSQL
+AS
+$$
+Declare 
+	rowValue record;
+Begin
+	For rowValue in(Select ename from satish where job='SALESMAN')
+	LOOP
+		empname:=rowValue.ename;
+		return Next;
+	End LOOP;
+	Return;
+End;
+$$;
+--Call Function
+select * from getdataofJob();
