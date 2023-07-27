@@ -1,0 +1,5 @@
+--Views
+create view Vew
+As
+Select ename,job from satish;
+select * from Vew;
