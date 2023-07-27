@@ -1,0 +1,20 @@
+Create Or Replace Function getHighpaidemp()
+Returns Table(empname Text)
+Language PLPGSQL
+AS
+$$
+Declare 
+	rowValue record;
+	highest_salary NUMERIC;
+Begin
+	select Max(sal) from satish into highest_salary;
+	For rowValue in(Select ename from satish where sal=highest_salary)
+	LOOP
+		empname:=rowValue.ename;
+		return Next;
+	End LOOP;
+	Return;
+End;
+$$;
+--Call Function
+select * from getHighpaidemp();
