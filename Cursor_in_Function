@@ -1,0 +1,21 @@
+Create Or Replace Function getdataofJobUsingCursor()
+Returns Table(empname Text)
+Language PLPGSQL
+AS
+$$
+Declare 
+	Simpl Cursor for select ename from satish;
+	r Record;
+Begin
+	Open Simpl;
+	Loop
+		Fetch Simpl into r;
+		Exit when Not Found;
+		empname=r.ename;
+		return Next;
+	End LOOP;
+	Close Simpl;
+End $$;
+--
+Select * from getdataofJobUsingCursor();
+
